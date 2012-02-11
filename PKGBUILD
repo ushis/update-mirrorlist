@@ -7,6 +7,7 @@ arch=(any)
 url="https://github.com/ushis/update-mirrorlist"
 license=('GPL')
 depends=()
+backup=('etc/pacman.d/update-mirrolist.conf')
 install=update-mirrorlist.install
 source=()
 md5sums=()
