@@ -7,11 +7,14 @@ arch=(any)
 url="https://github.com/ushis/update-mirrorlist"
 license=('GPL')
 depends=('coreutils' 'wget' 'pacman' 'iputils' 'grep')
-backup=('etc/pacman.d/update-mirrolist.conf')
+backup=('etc/pacman.d/update-mirrorlist.conf')
 install=update-mirrorlist.install
-source=('update-mirrorlist' 'update-mirrorlist.conf')
+source=('update-mirrorlist'
+        'update-mirrorlist.conf'
+        'makefile')
 md5sums=('a6aa441dbf4d7c6af3b91f7361eac887'
-         'b13a7e783d0a84ea75704b6f4f8ce57c')
+         'b13a7e783d0a84ea75704b6f4f8ce57c'
+         '090a56e65fafddff46ea5a60a40d84f7')
 
 package() {
   cd "$srcdir"
