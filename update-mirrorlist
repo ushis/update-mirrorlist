@@ -22,6 +22,7 @@ test_root() {
 
 usage() {
 	echo "Usage: ${0} [option]"
+	echo ''
 	echo 'Options:'
 	echo '  -v  Show version and exit'
 	echo '  -h  Show this help'
