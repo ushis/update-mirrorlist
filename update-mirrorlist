@@ -126,6 +126,7 @@ if [ "`ping -c 1 archlinux.org`" ]; then
 	fi
 
 	mv "$tmpfile" /etc/pacman.d/mirrorlist
+	chmod 644 /etc/pacman.d/mirrorlist
 	log 'Updated mirrorlist'
 else
 	log 'Error: Could not reach host: archlinux.org'
