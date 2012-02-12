@@ -4,6 +4,7 @@ VERSION='1.0.1'
 PROTOCOL=('http' 'ftp')
 IPV=(4)
 USE_STATUS=true
+MAX=6
 COUNTRIES=()
 
 . /etc/pacman.d/update-mirrorlist.conf
@@ -135,7 +136,12 @@ if [ $? -ne 1 ]; then
 	exit 1
 fi
 
-mv "$tmpfile" /etc/pacman.d/mirrorlist
+if [ $MAX -gt 0 ]; then
+	egrep -m $MAX '^Server = (http|ftp)://' "$tmpfile" > /etc/pacman.d/mirrorlist
+else
+	mv "$tmpfile" /etc/pacman.d/mirrorlist
+fi
+
 chmod 644 /etc/pacman.d/mirrorlist
 log 'Updated mirrorlist'
 
