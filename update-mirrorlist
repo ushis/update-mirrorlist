@@ -122,21 +122,21 @@ log 'Updating mirrorlist'
 
 tmpfile=$(mktemp --suffix=-mirrorlist)
 
-if [ "`ping -c 1 archlinux.org`" ]; then
-	wget -qO- "$uri" | sed 's/^#Server/Server/g' > "$tmpfile"
-	check "$tmpfile"
-
-	if [ $? -ne 1 ]; then
-		log 'Retrieved mirrorlist seems to be corrupted.'
-		exit 1
-	fi
-
-	mv "$tmpfile" /etc/pacman.d/mirrorlist
-	chmod 644 /etc/pacman.d/mirrorlist
-	log 'Updated mirrorlist'
-else
+if [ ! "`ping -c 1 archlinux.org`" ]; then
 	log 'Error: Could not reach host: archlinux.org'
 	exit 1
 fi
+
+wget -qO- "$uri" | sed 's/^#Server/Server/g' > "$tmpfile"
+check "$tmpfile"
+
+if [ $? -ne 1 ]; then
+	log 'Retrieved mirrorlist seems to be corrupted.'
+	exit 1
+fi
+
+mv "$tmpfile" /etc/pacman.d/mirrorlist
+chmod 644 /etc/pacman.d/mirrorlist
+log 'Updated mirrorlist'
 
 exit 0
