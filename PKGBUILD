@@ -1,7 +1,7 @@
 # Maintainer: ushi <martin.kalcher@gmail.com>
 pkgname=update-mirrorlist
-pkgver=1.0.2
-pkgrel=2
+pkgver=1.0.3
+pkgrel=1
 pkgdesc="Update tool for pacmans mirrorlist"
 arch=(any)
 url="https://github.com/ushis/update-mirrorlist"
@@ -12,7 +12,7 @@ install=update-mirrorlist.install
 source=('update-mirrorlist'
         'update-mirrorlist.conf'
         'makefile')
-md5sums=('b3ab4c4448700ba7fd2dfc57ff02d060'
+md5sums=('8cb707164b19b3028847b7bd088112dc'
          '6edabb841afae61bd4e47eb03295ed0f'
          '090a56e65fafddff46ea5a60a40d84f7')
 
