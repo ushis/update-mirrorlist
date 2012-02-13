@@ -53,7 +53,7 @@ check() {
 restore() {
 	log 'Restoring original mirrorlist'
 
-	if [ -f /etc/pacman.d/mirrorlist.original ]; then
+	if [ ! -f /etc/pacman.d/mirrorlist.original ]; then
 		log 'File does not exist: /etc/pacman.d/mirrorlist.original'
 		exit 1
 	fi
