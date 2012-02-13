@@ -13,7 +13,7 @@ source=('update-mirrorlist'
         'update-mirrorlist.conf'
         'makefile')
 md5sums=('7277744face9fbae25e123c2b6b53dd3'
-         '00cf52854a21c7d5fc526ab40d665288'
+         'cf2d5b4ac094ff005ac89da99400da9a'
          '090a56e65fafddff46ea5a60a40d84f7')
 
 package() {
