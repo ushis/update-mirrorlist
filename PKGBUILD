@@ -1,6 +1,6 @@
 # Maintainer: ushi <martin.kalcher@gmail.com>
 pkgname=update-mirrorlist
-pkgver=1.0.3
+pkgver=1.0.4
 pkgrel=1
 pkgdesc="Update tool for pacmans mirrorlist"
 arch=(any)
