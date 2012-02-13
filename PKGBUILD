@@ -12,7 +12,7 @@ install=update-mirrorlist.install
 source=('update-mirrorlist'
         'update-mirrorlist.conf'
         'makefile')
-md5sums=('67e06e1e4621accecf020234d5d8dffe'
+md5sums=('7277744face9fbae25e123c2b6b53dd3'
          '00cf52854a21c7d5fc526ab40d665288'
          '090a56e65fafddff46ea5a60a40d84f7')
 

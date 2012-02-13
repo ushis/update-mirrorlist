@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION='1.0.3'
+VERSION='1.0.4'
 PROTOCOL=('http' 'ftp')
 IPV=(4)
 USE_STATUS=true
@@ -22,11 +22,14 @@ test_root() {
 }
 
 usage() {
-	echo "Usage: ${0} [option]"
+	echo "Usage: ${0} [options]"
 	echo ''
-	echo 'Options:'
-	echo '  -v  Show version and exit'
+	echo 'Update options:'
+	echo '  -m <num>   Set max number of mirrors'
+	echo ''
+	echo 'Other options:'
 	echo '  -h  Show this help'
+	echo '  -v  Show version and exit'
 	echo '  -r  Restore original mirrorlist'
 	echo '  -c  Check mirrorlist for errors'
 	echo ''
@@ -86,8 +89,18 @@ check_curlist() {
 	exit 0
 }
 
-while getopts 'vhrc' opt; do
+set_max() {
+	if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+		echo "Given value is not a number: $1"
+		exit 1
+	fi
+
+	MAX=$1
+}
+
+while getopts 'm:ovhrc' opt; do
 	case ${opt} in
+		m) set_max $OPTARG;;
 		v) echo "update-mirrorlist, version ${VERSION}"; exit 0;;
 		r) test_root; restore;;
 		c) check_curlist;;
