@@ -54,20 +54,20 @@ restore() {
 	log 'Restoring original mirrorlist'
 
 	if [ -f /etc/pacman.d/mirrorlist.original ]; then
-		check /etc/pacman.d/mirrorlist.original
-
-		if [ $? -ne 1 ]; then
-			log 'Original mirrorlist seems to be corrupted.'
-			exit 1
-		fi
-
-		mv /etc/pacman.d/mirrorlist.original /etc/pacman.d/mirrorlist
-		log 'Restored original mirrorlist'
-		exit 0
+		log 'File does not exist: /etc/pacman.d/mirrorlist.original'
+		exit 1
 	fi
 
-	log 'File does not exist: /etc/pacman.d/mirrorlist.original'
-	exit 1
+	check /etc/pacman.d/mirrorlist.original
+
+	if [ $? -ne 1 ]; then
+		log 'Original mirrorlist seems to be corrupted.'
+		exit 1
+	fi
+
+	mv /etc/pacman.d/mirrorlist.original /etc/pacman.d/mirrorlist
+	log 'Restored original mirrorlist'
+	exit 0
 }
 
 check_curlist() {
