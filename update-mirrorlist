@@ -6,6 +6,7 @@ IPV=(4)
 USE_STATUS=true
 MAX=0
 COUNTRIES=()
+PACSERVE=''
 
 . /etc/pacman.d/update-mirrorlist.conf
 
@@ -153,6 +154,10 @@ if [ $MAX -gt 0 ]; then
 	egrep -m $MAX '^Server = (http|ftp)://' "$tmpfile" > /etc/pacman.d/mirrorlist
 else
 	mv "$tmpfile" /etc/pacman.d/mirrorlist
+fi
+
+if [ -n "$PACSERVE" -a -f /usr/bin/pacserve ]; then
+	sed "1 i## Pacserve repository\nServer=$PACSERVE\n" -i /etc/pacman.d/mirrorlist
 fi
 
 chmod 644 /etc/pacman.d/mirrorlist
