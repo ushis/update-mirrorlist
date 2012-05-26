@@ -134,14 +134,14 @@ fi
 
 log 'Updating mirrorlist'
 
-tmpfile=$(mktemp --suffix=-mirrorlist)
+tmpfile=$(mktemp --tmpdir mirrorlist-XXXXXXXXXXXX)
 
 if [ ! "`ping -c 1 archlinux.org`" ]; then
 	log 'Error: Could not reach host: archlinux.org'
 	exit 1
 fi
 
-wget -qO- "$uri" | sed 's/^#Server/Server/g' > "$tmpfile"
+curl -s "$uri" | sed 's/^#Server/Server/g' > "$tmpfile"
 check "$tmpfile"
 
 if [ $? -ne 1 ]; then
