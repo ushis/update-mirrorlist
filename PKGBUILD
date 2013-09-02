@@ -1,7 +1,7 @@
 # Maintainer: ushi <martin.kalcher@gmail.com>
 pkgname=update-mirrorlist
 pkgver=1.0.9
-pkgrel=1
+pkgrel=2
 pkgdesc="Update tool for pacmans mirrorlist"
 arch=(any)
 url="https://github.com/ushis/update-mirrorlist"
@@ -22,7 +22,7 @@ sha256sums=(
 
 package() {
   cd "$srcdir"
-  install -D -m755 'update-mirrorlist'      "${pkgdir}/usr/bin/update/mirrorlist"
+  install -D -m755 'update-mirrorlist'      "${pkgdir}/usr/bin/update-mirrorlist"
   install -D -m644 'update-mirrorlist.conf' "${pkgdir}/etc/pacman.d/update-mirrorlist.conf"
 }
 
