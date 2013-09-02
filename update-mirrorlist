@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VERSION='1.0.4'
-PROTOCOL=('http' 'ftp')
+VERSION='1.0.5'
+PROTOCOL=('http' 'https')
 IPV=(4)
 USE_STATUS=true
 MAX=0
@@ -10,9 +10,37 @@ PACSERVE=''
 
 . /etc/pacman.d/update-mirrorlist.conf
 
+if [ $COLOR ]; then
+    # colors:
+    WHITE="\033[38;1m"
+    GREEN="\033[32;1m"
+    BLUE="\033[34;1m"
+    RED="\033[31;1m"
+    CLOSE="\033[0m"
+
+    # prefixes:
+    WORK=$BLUE"::"$CLOSE
+    INFO=$GREEN" >"$CLOSE
+    ARROW=$BLUE"->"$CLOSE
+    ERROR=$RED" >"$CLOSE
+fi
+
 log() {
+    if [ $COLOR ]; then
+	echo -e $WORK $WHITE"$1"$CLOSE ;
+    else
 	echo "$1"
-	echo `date +'[%Y-%m-%d %H:%M]'` "$1" >> /var/log/pacman.log
+    fi
+    echo `date +'[%Y-%m-%d %H:%M]'` "$1" >> /var/log/pacman.log
+}
+
+error() {
+    if [ $COLOR ]; then
+	echo -e $ERROR $WHITE"$1"$CLOSE ;
+    else
+	echo "$1"
+    fi
+    echo `date +'[%Y-%m-%d %H:%M]'` "$1" >> /var/log/pacman.log
 }
 
 test_root() {
@@ -42,7 +70,7 @@ usage() {
 
 check() {
 	# Test for invalid lines
-	if [ -n "$(egrep -v '^#|^[[:blank:]]*$|^Server = (http|ftp)://' "$1")" ]; then
+	if [ -n "$(egrep -v '^#|^[[:blank:]]*$|^Server = (http|https)://' "$1")" ]; then
 		return 0
 	fi
 
@@ -138,7 +166,7 @@ log 'Updating mirrorlist'
 tmpfile=$(mktemp --tmpdir mirrorlist-XXXXXXXXXXXX)
 
 if [ ! "`ping -c 1 archlinux.org`" ]; then
-	log 'Error: Could not reach host: archlinux.org'
+	error 'Error: Could not reach host: archlinux.org'
 	exit 1
 fi
 
@@ -146,7 +174,7 @@ curl -s "$uri" | sed 's/^#Server/Server/g' > "$tmpfile"
 check "$tmpfile"
 
 if [ $? -ne 1 ]; then
-	log 'Retrieved mirrorlist seems to be corrupted.'
+	error 'Retrieved mirrorlist seems to be corrupted.'
 	exit 1
 fi
 

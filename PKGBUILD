@@ -1,6 +1,6 @@
 # Maintainer: ushi <martin.kalcher@gmail.com>
 pkgname=update-mirrorlist
-pkgver=1.0.7
+pkgver=1.0.8
 pkgrel=1
 pkgdesc="Update tool for pacmans mirrorlist"
 arch=(any)
@@ -12,8 +12,8 @@ install=update-mirrorlist.install
 source=('update-mirrorlist'
         'update-mirrorlist.conf'
         'makefile')
-md5sums=('445e9aa247bad8a4ed9ae44455687662'
-         'a64a72aeb07f173ede54ff30d42c53fc'
+md5sums=('3759c398bdb2bade77af3ac070346dd6'
+         '1484f46932e249ecb8c2716956ebbc7b'
          '090a56e65fafddff46ea5a60a40d84f7')
 package() {
   cd "$srcdir"
