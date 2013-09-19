@@ -1,7 +1,7 @@
 # Maintainer: ushi <martin.kalcher@gmail.com>
 pkgname=update-mirrorlist
-pkgver=1.0.9
-pkgrel=2
+pkgver=1.0.10
+pkgrel=1
 pkgdesc="Update tool for pacmans mirrorlist"
 arch=(any)
 url="https://github.com/ushis/update-mirrorlist"
@@ -17,7 +17,7 @@ source=(
 
 sha256sums=(
   'af1ec558e833d2fe37e59235fc2c8210d925caa080be74c889c6506f0e2c1dba'
-  '9b9426cf660ce10d5f75f6b02e0f3997e01bf19fbb56b06fb808abc551706395'
+  '70f63174373cb6bdecb1e6b9537dc5bbb85483d69ae290a01b1d88370d446c95'
 )
 
 package() {
